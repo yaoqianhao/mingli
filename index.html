@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>命理推演器 · 项目首页</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0d0f15;color:#c9cfdd;
+  font-family:"Sarasa Mono SC","Noto Sans Mono CJK SC",-apple-system,Menlo,monospace;
+  display:flex;justify-content:center;padding:56px 24px}
+.wrap{max-width:880px;width:100%}
+h1{font-size:26px;font-weight:600;margin:0 0 6px;letter-spacing:.04em;color:#e6ecff}
+.sub{color:#6b7488;font-size:13px;margin-bottom:36px;line-height:1.7}
+.sec{margin-bottom:34px}
+h2{font-size:12px;letter-spacing:.16em;color:#5c6478;margin:0 0 14px;
+   padding-bottom:8px;border-bottom:1px solid #1f2432}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+a{display:block;padding:16px 18px;background:#151922;border:1px solid #232838;
+  border-radius:9px;text-decoration:none;transition:.16s}
+a:hover{background:#1a2030;transform:translateY(-1px)}
+a:hover{border-color:#3d4a66}
+a b{display:block;color:#d6dcea;font-size:13.5px;font-weight:500;margin-bottom:5px}
+a span{display:block;color:#6b7488;font-size:11.5px;line-height:1.5}
+code{background:#1a1f2b;padding:2px 6px;border-radius:4px;color:#a5d6a7;font-size:12px}
+.cmd{background:#12151d;border:1px solid #232838;border-radius:9px;padding:16px 18px;
+  margin-top:10px;font-size:12.5px;line-height:1.9;color:#9aa4bd;white-space:pre;overflow-x:auto}
+.note{color:#6b7488;font-size:12px;line-height:1.8;margin-top:12px}
+</style></head><body><div class="wrap">
+<h1>命理推演器</h1>
+<div class="sub">七个传统术数引擎 · 纯 Python 标准库 · 零依赖 · 5264 行代码 / 67 项测试</div>
+
+<div class="sec">
+<h2>先看这个</h2>
+<div class="grid">
+  <a href="source-code.html"><b>源码总览</b><span>19 个文件全部内嵌，带行号与高亮，浏览器里直接读</span></a>
+  <a href="source/mingli/README.md"><b>README</b><span>七引擎口径、规则出处、已知边界（649 行）</span></a>
+</div>
+</div>
+
+<div class="sec">
+<h2>玩盘面 · 拖动权重看结论变色</h2>
+<div class="grid">
+  <a href="demos/slider-liuyao.html"><b>六爻</b><span>用神旺衰评分，五条因子可拖</span></a>
+  <a href="demos/slider-meihua.html"><b>梅花易数</b><span>体用三段加权，最容易翻盘</span></a>
+  <a href="demos/slider-qimen.html"><b>奇门遁甲</b><span>九宫格 + 八门九星八神</span></a>
+  <a href="demos/slider-liuren.html"><b>大六壬</b><span>四课三传 + 十二天将</span></a>
+  <a href="demos/slider-ziwei.html"><b>紫微斗数</b><span>十四主星 + 生年四化</span></a>
+</div>
+</div>
+
+<div class="sec">
+<h2>看报告</h2>
+<div class="grid">
+  <a href="demos/demo-charts.html"><b>三引擎盘面示例</b><span>八字 / 六爻 / 梅花的实际输出</span></a>
+  <a href="demos/calibration-report.html"><b>权重校准报告</b><span>逻辑回归反推权重，附交叉验证与区间</span></a>
+  <a href="demos/caselog-compare.html"><b>案例库对决</b><span>哈希链 + 同一批案例上的权重对比</span></a>
+  <a href="demos/demo-weights-qimen.html"><b>权重敏感性</b><span>只动一个参数，结论会翻吗</span></a>
+</div>
+</div>
+
+<div class="sec">
+<h2>跑起来</h2>
+<div class="cmd">cd source
+python3 -m mingli                              # 交互菜单
+python3 -m mingli bazi --date "1990-06-15 10:30" --lng 116.4 --gender m
+python3 -m unittest mingli.tests -v            # 67 项自测</div>
+<div class="note">
+需要 Python 3.10+，无第三方依赖。<br>
+所有 HTML 都是自包含的，断网也能用。
+</div>
+</div>
+
+</div></body></html>
