@@ -26,13 +26,14 @@ code{background:#1a1f2b;padding:2px 6px;border-radius:4px;color:#a5d6a7;font-siz
 .note{color:#6b7488;font-size:12px;line-height:1.8;margin-top:12px}
 </style></head><body><div class="wrap">
 <h1>命理推演器</h1>
-<div class="sub">七个传统术数引擎 · 纯 Python 标准库 · 零依赖 · 5264 行代码 / 67 项测试</div>
+<div class="sub">七个传统术数引擎 · 纯 Python 标准库 · 零依赖 · 18 个源文件 / 5,269 行 / 67 项测试</div>
 
 <div class="sec">
 <h2>先看这个</h2>
 <div class="grid">
-  <a href="source-code.html"><b>源码总览</b><span>19 个文件全部内嵌，带行号与高亮，浏览器里直接读</span></a>
-  <a href="source/mingli/README.md"><b>README</b><span>七引擎口径、规则出处、已知边界（649 行）</span></a>
+  <a href="START_HERE.md"><b>一分钟上手</b><span>目录结构、常用命令、提交推送</span></a>
+  <a href="README.md"><b>完整文档</b><span>七引擎口径、规则出处、权重层、校准方法、已知边界</span></a>
+  <a href="source-code.html"><b>源码总览</b><span>18 个源文件全部内嵌，带行号与高亮，浏览器里直接读</span></a>
 </div>
 </div>
 
@@ -64,8 +65,8 @@ python3 -m mingli                              # 交互菜单
 python3 -m mingli bazi --date "1990-06-15 10:30" --lng 116.4 --gender m
 python3 -m unittest mingli.tests -v            # 67 项自测</div>
 <div class="note">
-需要 Python 3.10+，无第三方依赖。<br>
-所有 HTML 都是自包含的，断网也能用。
+需要 Python 3.10+，无第三方依赖；Windows 下用 <code>python</code> 或 <code>py</code> 代替 <code>python3</code>。<br>
+所有 HTML 都是自包含的，断网也能用；<code>source-code.html</code> 由 <code>tools/build_source_page.py</code> 生成。
 </div>
 </div>
 

@@ -1,6 +1,8 @@
 """回归测试：python3 -m unittest mingli.tests -v"""
+import os
+import tempfile
 import unittest
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from .calendar import four_pillars, jdn_from_ymd
 from .jiazi import jiazi, jiazi_index, shishen, nayin, changsheng
@@ -434,7 +436,6 @@ class TestCalibrate(unittest.TestCase):
 
 class TestCaseLog(unittest.TestCase):
     def setUp(self):
-        import tempfile, os
         self.path = os.path.join(tempfile.mkdtemp(), "cases.json")
         self.log = cl.CaseLog(self.path)
 
@@ -521,7 +522,6 @@ class TestCompare(unittest.TestCase):
             cl.load_rule_spec("nonsense")
 
     def test_compare_needs_data(self):
-        import tempfile, os
         log = cl.CaseLog(os.path.join(tempfile.mkdtemp(), "c.json"))
         for i in range(3):
             log.add("liuyao", {"coins": [1, 2, 3, 1, 0, 2], "day": "戊午",
@@ -531,11 +531,8 @@ class TestCompare(unittest.TestCase):
         self.assertIn("做不了有意义的比较", text)
 
     def test_compare_runs(self):
-        import tempfile, os
-        from datetime import datetime
         log = cl.CaseLog(os.path.join(tempfile.mkdtemp(), "c.json"))
         base = datetime(2026, 3, 1, 10, 0)
-        from datetime import timedelta
         for i in range(12):
             dt = base + timedelta(days=i * 7)
             log.add("liuyao", {"date": dt.strftime("%Y-%m-%d %H:%M"),
@@ -590,11 +587,12 @@ class TestRules(unittest.TestCase):
         hi = base.evaluate("妻财", r)
         self.assertGreater(hi["score"], lo["score"])
 
-    def test_save_load(self, tmpdir="/tmp/_rules_test.json"):
+    def test_save_load(self):
+        path = os.path.join(tempfile.mkdtemp(), "_rules_test.json")
         r = Rules()
         r.set("liuyao.month.lin", 9.9)
-        r.save(tmpdir)
-        r2 = Rules.load(tmpdir)
+        r.save(path)
+        r2 = Rules.load(path)
         self.assertEqual(r2.get("liuyao.month.lin"), 9.9)
 
 

@@ -10,10 +10,30 @@
 
 ---
 
+## 目录结构
+
+```
+mingli/                          仓库根
+├── README.md                    本文档：七引擎口径、权重层、校准、边界
+├── START_HERE.md                一分钟上手
+├── index.html                   项目首页（双击打开，链到演示页与源码页）
+├── source-code.html             源码总览（由 tools/build_source_page.py 生成）
+├── demos/                       九个自包含演示页 + 校准用的示例案例
+├── tools/
+│   └── build_source_page.py     重新生成 source-code.html
+└── source/
+    ├── mingli/                  源码包，18 个 .py（分工见文末「代码结构」）
+    └── output/                  命令行默认输出目录（运行产物，不入库）
+```
+
+需要 Python 3.10+，无第三方依赖；Windows 下把下文命令里的 `python3` 换成 `python` 或 `py`。
+
+---
+
 ## 快速开始
 
 ```bash
-cd /sandbox/workspace
+cd source          # 下面所有命令都在 source/ 目录里执行
 
 # 交互模式（推荐先用这个）
 python3 -m mingli
@@ -602,7 +622,9 @@ P(吉) = sigmoid(score_i)         预测：score > 0 判吉
 ## 代码结构
 
 ```
-mingli/
+source/mingli/
+├── __init__.py   包元信息（版本号）
+├── __main__.py   python3 -m mingli 的入口
 ├── jiazi.py      符号层：干支、五行、阴阳、藏干、十神、纳音、长生、地支关系
 ├── calendar.py   历法层：儒略日、太阳视黄经、二十四节气、真太阳时、四柱
 ├── lunar.py      农历层：朔的计算、闰月判定
@@ -621,10 +643,14 @@ mingli/
 └── tests.py      67 项回归测试
 ```
 
-**自测**：
+**自测**（在 `source/` 下执行）：
+
 ```bash
 python3 -m unittest mingli.tests -v
 ```
+
+注意：`calendar.py` 与标准库同名，所以不要在 `source/mingli/` 目录里直接跑脚本；
+一律从 `source/` 用 `python3 -m mingli ...` 调用。
 
 测试覆盖：六十甲子循环、十神定性、纳音、十二长生、四柱已知案例（含立春/惊蛰分界）、
 日柱 60 日周期、农历含闰月、八宫生成 64 卦唯一性、姤卦/同人卦装卦全表、
@@ -639,6 +665,12 @@ python3 -m unittest mingli.tests -v
 记录库验哈希链完整、三种篡改（改预测/改结果/删记录）均被检出、重复回填被拦、跨实例持久化；
 比较部分验 McNemar 已知值、规则集解析、样本不足提示、完整比较流程。
 
+**重新生成源码总览页**（改完源码后在仓库根目录执行，`source-code.html` 会跟着更新）：
+
+```bash
+python3 tools/build_source_page.py
+```
+
 ---
 
 ## 一处需要说明的分歧
@@ -647,5 +679,3 @@ python3 -m unittest mingli.tests -v
 （因为装卦规则绑定的是卦象），遇到冲突会按卦理自行推导变卦。
 例如「天火同人，初爻与四爻动」，正确变卦是**风山渐**——初爻阳变阴、四爻阳变阴，
 下卦离变艮、上卦乾变巽。若某处写「风火家人」，那是把动爻位置搞错了。
-#   m i n g l i  
- 
